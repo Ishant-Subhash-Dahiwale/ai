@@ -11,6 +11,7 @@
   "dependencies": {
     "@google/generative-ai": "^0.8.0",
     "@llama-node/llama-cpp": "^0.1.6",
+    "axios": "^1.6.8",
     "express": "^4.19.2",
     "llama-node": "^0.1.6",
     "openai": "^4.38.5"
