@@ -1,16 +1,16 @@
 const axios = require('axios');
 const express=require('express')
 const app =  express();
-const fs = require('fs');
+// const fs = require('fs');
 
-const bodyParser = require('body-parser');
+// const bodyParser = require('body-parser');
 
-// Middleware to parse URL-encoded bodies
-app.use(bodyParser.urlencoded({ extended: false }));
+// // Middleware to parse URL-encoded bodies
+// app.use(bodyParser.urlencoded({ extended: false }));
 
-// Middleware to parse JSON bodies
-app.use(bodyParser.json());
-app.use(express.static(__dirname));
+// // Middleware to parse JSON bodies
+// app.use(bodyParser.json());
+// app.use(express.static(__dirname));
 
 
 const options = {
@@ -39,29 +39,33 @@ a =  async(m)=>{
   options.data.messages.pop();
 return response.data;}
 
-
+var x = "";
 // Route for handling GET request to the root path
-app.get('/', (req, res) => {
+app.get('/', async(req, res) => {
+  const userInput = String(req.query.userInput);
+console.log(userInput);
+  x= await a(userInput);
+  res.send(`'${String(x.text)}'`);
 
-  fs.readFile(__dirname + '/index.html', 'utf8', (err, html) => {
-    if (err) {
-        console.error('Error reading HTML file:', err);
-        res.status(500).send('Internal Server Error');
-        return;
-    }
-    res.send(html); // Send the HTML file as response
-});
+  // fs.readFile(__dirname + '/index.html', 'utf8', (err, html) => {
+  //   if (err) {
+  //       console.error('Error reading HTML file:', err);
+  //       res.status(500).send('Internal Server Error');
+  //       return;
+  //   }
+  //   res.send(html); // Send the HTML file as response
+// });
   // res.sendFile("./index.html");
   // res.end();
 });
 
 // Route for handling POST request to the root path
 app.post('/', async(req, res) => {
-  const userInput = String(req.body.userInput);
-console.log(userInput);
-  var x= await a(userInput);
-x= 
-  res.send(`<p> '${String(x.text)}'</p>`);
+//   const userInput = String(req.query.userInput);
+// console.log(userInput);
+//   var x= await a(userInput);
+
+  // res.send(`<p> '${String(x.text)}'</p>`);
 });
 
 app.listen(3000,()=>{
