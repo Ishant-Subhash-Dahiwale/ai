@@ -3,14 +3,14 @@ const express=require('express')
 const app =  express();
 // const fs = require('fs');
 
-// const bodyParser = require('body-parser');
+const bodyParser = require('body-parser');
 
 // // Middleware to parse URL-encoded bodies
-// app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // // Middleware to parse JSON bodies
-// app.use(bodyParser.json());
-// app.use(express.static(__dirname));
+app.use(bodyParser.json());
+app.use(express.static(__dirname));
 
 
 const options = {
