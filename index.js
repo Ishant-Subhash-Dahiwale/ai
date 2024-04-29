@@ -45,28 +45,14 @@ app.get('/', async(req, res) => {
   const userInput = String(req.query.userInput);
 console.log(userInput);
   x= await a(userInput);
-  res.send(`'${String(x.text)}'`);
+  res.send(`<p>'${String(x.text)}'<p>`);
 
-  // fs.readFile(__dirname + '/index.html', 'utf8', (err, html) => {
-  //   if (err) {
-  //       console.error('Error reading HTML file:', err);
-  //       res.status(500).send('Internal Server Error');
-  //       return;
-  //   }
-  //   res.send(html); // Send the HTML file as response
-// });
-  // res.sendFile("./index.html");
-  // res.end();
+
+  res.end();
 });
 
 // Route for handling POST request to the root path
-app.post('/', async(req, res) => {
-//   const userInput = String(req.query.userInput);
-// console.log(userInput);
-//   var x= await a(userInput);
 
-  // res.send(`<p> '${String(x.text)}'</p>`);
-});
 
 app.listen(3000,()=>{
   console.log("listening");
