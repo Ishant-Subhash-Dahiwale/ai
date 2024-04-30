@@ -3,14 +3,14 @@ const express=require('express')
 const app =  express();
 // const fs = require('fs');
 
-const bodyParser = require('body-parser');
+// const bodyParser = require('body-parser');
 
 // // Middleware to parse URL-encoded bodies
-app.use(bodyParser.urlencoded({ extended: false }));
+// app.use(bodyParser.urlencoded({ extended: false }));
 
 // // Middleware to parse JSON bodies
-app.use(bodyParser.json());
-app.use(express.static(__dirname));
+// app.use(bodyParser.json());
+// app.use(express.static(__dirname));
 
 
 const options = {
@@ -41,15 +41,30 @@ return response.data;}
 
 var x = "";
 // Route for handling GET request to the root path
-app.get('/', async(req, res) => {
-  const userInput = String(req.query.userInput);
-console.log(userInput);
+// app.get('/', async(req, res) => {
+//   const userInput = String(req.query.userInput);
+// console.log(userInput);
+//   x= await a(userInput);
+//   res.send(`<p>'${String(x.text)}'<p>`);
+
+
+//   res.end();
+// });
+let userInput = '';
+
+app.post('/query',(req,res)=>{
+  userInput = String(req.query.user);
+  console.log(userInput);
+})
+app.get('/query',async (req,res)=>{
+
   x= await a(userInput);
   res.send(`<p>'${String(x.text)}'<p>`);
 
-
   res.end();
+
 });
+    
 
 // Route for handling POST request to the root path
 
