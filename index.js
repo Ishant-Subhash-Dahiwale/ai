@@ -6,7 +6,7 @@ const genAI = new GoogleGenerativeAI("AIzaSyCkl99N0WdJMusNL_BgZHLYkIo5IC_P2qc");
 async function run(prompt) {
 
   // For text-only input, use the gemini-pro model
-  const model = genAI.getGenerativeModel({ model: "gemini-pro" }).startChat();
+  const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
   // const prompt = "who are you?"
   // const result = await model.sendMessage(prompt);
