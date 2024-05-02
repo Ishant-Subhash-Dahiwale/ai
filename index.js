@@ -1,43 +1,35 @@
+const { GoogleGenerativeAI } = require("@google/generative-ai");
+
+// Access your API key as an environment variable (see "Set up your API key" above)
+const genAI = new GoogleGenerativeAI("AIzaSyCkl99N0WdJMusNL_BgZHLYkIo5IC_P2qc");
+
+async function run(prompt) {
+
+  // For text-only input, use the gemini-pro model
+  const model = genAI.getGenerativeModel({ model: "gemini-pro" }).startChat();
+
+  // const prompt = "who are you?"
+  // const result = await model.sendMessage(prompt);
+
+  const result = await model.generateContent(prompt);
+  const response = await result.response;
+  const text = response.text();
+  console.log(text);
+  return text.toString();
+}
+
+
+
 const axios = require('axios');
 const express=require('express')
 const app =  express();
-// const fs = require('fs');
-
-// const bodyParser = require('body-parser');
-
-// // Middleware to parse URL-encoded bodies
-// app.use(bodyParser.urlencoded({ extended: false }));
-
-// // Middleware to parse JSON bodies
-// app.use(bodyParser.json());
-// app.use(express.static(__dirname));
-
-
-const options = {
-  method: 'POST',
-  url: 'https://chat-gtp-free.p.rapidapi.com/v1/chat/completions',
-  headers: {
-    'content-type': 'application/json',
-    'X-RapidAPI-Key': '80335c2c36mshcbaa43bbcca4d24p1e1e5ejsn65f9ee36117d',
-    'X-RapidAPI-Host': 'chat-gtp-free.p.rapidapi.com'
-  },
-  data: {
-    chatId: '92d97036-3e25-442b-9a25-096ab45b0525',
-    messages: [
-      {
-        role: 'system',
-        content: 'You are a virtual assistant. Your name is Karen and you would like to be a designeeer.'
-      }
-    ]
-  }
-};
 console.log("response.data");
-a =  async(m)=>{  
-  options.data.messages.push({role:"user",content:`${m}`});
-    const response = await axios.request(options);
-	console.log(response.data);
-  options.data.messages.pop();
-return response.data;}
+// a =  async(m)=>{  
+//   options.data.messages.push({role:"user",content:`${m}`});
+//     const response = await axios.request(options);
+// 	console.log(response.data);
+//   options.data.messages.pop();
+// return response.data;}
 
 var x = "";
 // Route for handling GET request to the root path
@@ -55,9 +47,9 @@ let userInput = '';
 app.get('/query',async (req,res)=>{
   userInput = req.query.user
   console.log(userInput);
-  x= await a(userInput);
-  res.send(`<p>'${String(x.text)}'<p>`);
-  userInput = String(req.query.user);
+  x= await run(userInput);
+  res.send(`<p>'${String(x)}'<p>`);
+  // userInput = String(req.query.user);
   res.end();
 
 })
