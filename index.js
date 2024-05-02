@@ -52,18 +52,17 @@ var x = "";
 // });
 let userInput = '';
 
-app.post('/query',(req,res)=>{
-  userInput = String(req.query.user);
-  console.log(userInput);
-})
 app.get('/query',async (req,res)=>{
-
+  userInput = req.query.user
+  console.log(userInput);
   x= await a(userInput);
   res.send(`<p>'${String(x.text)}'<p>`);
-
+  userInput = String(req.query.user);
   res.end();
 
-});
+})
+// app.get('/')
+
     
 
 // Route for handling POST request to the root path
