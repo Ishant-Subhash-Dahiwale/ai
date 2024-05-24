@@ -17,7 +17,7 @@ app.get('/query',async (req,res)=>{
   userInput = req.query.user
   console.log(userInput);
   x= await run(userInput);
-  res.send(`${String(x)}`);
+  res.json({dataa:`${String(x)}`});
   // userInput = String(req.query.user);
   res.end();
 
