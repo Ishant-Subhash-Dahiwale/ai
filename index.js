@@ -17,7 +17,8 @@ app.get('/query',async (req,res)=>{
   userInput = req.query.user
   console.log(userInput);
   x= await run(userInput);
-  res.json({dataa:`${String(x)}`});
+  const slicedString = String(x).slice(0, 75);
+  res.json({dataa:`${String(slicedString)}`});
   // userInput = String(req.query.user);
   res.end();
 
