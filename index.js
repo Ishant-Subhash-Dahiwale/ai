@@ -1,5 +1,5 @@
 const { GoogleGenerativeAI } = require("@google/generative-ai");
-const genAI = new GoogleGenerativeAI("AIzaSyCkl99N0WdJMusNL_BgZHLYkIo5IC_P2qc");
+const genAI = new GoogleGenerativeAI("AIzaSyA7BUBfM-izqAxGF1tYcgnC2zL2SRCOtf8");
 async function run(prompt) {
   const model = genAI.getGenerativeModel({ model: "gemini-pro" });
   const result = await model.generateContent(prompt);
